@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { auth as authAction } from "../../../actions/";
 
 class LoginForm extends Component {
@@ -19,12 +19,13 @@ class LoginForm extends Component {
 
   handlesSubmit = event => {
     event.preventDefault();
-    this.props.auth(this.state.name, this.state.password);
-    console.log(this.props.history.push("/profile"));
+    if (this.props.auth(this.state.name, this.state.password)) {
+      this.props.history.push("/profile");
+    }
   };
 
   render() {
-    return !this.props.isAuth ? (
+    return (
       <form onSubmit={this.handlesSubmit}>
         {this.props.error && <h2>{this.props.error}</h2>}
         <p>
@@ -46,8 +47,6 @@ class LoginForm extends Component {
           <button type="submit">Login</button>
         </p>
       </form>
-    ) : (
-      <Redirect to="/profile" />
     );
   }
 }

@@ -20,7 +20,9 @@ export const auth = (name, password) => dispatch => {
   if (name === "Admin" && password === "123456") {
     console.log("right");
     dispatch(authSusccess(name));
+    return true;
   } else {
     dispatch(authFail("Wrong name or password"));
+    return false;
   }
 };
