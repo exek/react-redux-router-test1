@@ -1,7 +1,11 @@
-const init = {
-  message: "Hello from redux store"
-};
+import { combineReducers } from "redux";
+import news from "./news";
 
-export default (state = init, action) => {
+const message = (state = "Hello from redux store", action) => {
   return state;
 };
+
+export default combineReducers({
+  message,
+  news
+});
