@@ -4,9 +4,9 @@ export const authStart = () => ({
   type: actionTypes.AUTH_START
 });
 
-export const authSusccess = data => ({
+export const authSusccess = token => ({
   type: actionTypes.AUTH_SUCCESS,
-  data
+  token
 });
 
 export const authFail = err => ({
@@ -15,9 +15,12 @@ export const authFail = err => ({
 });
 
 export const auth = (name, password) => dispatch => {
+  dispatch(authStart());
+  console.log(name, password);
   if (name === "Admin" && password === "123456") {
-    dispatch(authSusccess({ token: name }));
+    console.log("right");
+    dispatch(authSusccess(name));
   } else {
-    dispatch(authFail({ err: "Wrong name or password" }));
+    dispatch(authFail("Wrong name or password"));
   }
 };
