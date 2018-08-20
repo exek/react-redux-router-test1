@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Redirect, withRouter } from "react-router-dom";
+import { auth as authAction } from "../../../actions/";
 
-export class index extends Component {
+class LoginForm extends Component {
   static propTypes = {};
 
   state = {
@@ -15,17 +18,15 @@ export class index extends Component {
   };
 
   handlesSubmit = event => {
-    console.log(this.state.name, this.state.password);
-    this.setState({
-      name: "",
-      password: ""
-    });
     event.preventDefault();
+    this.props.auth(this.state.name, this.state.password);
+    console.log(this.props.history.push("/profile"));
   };
 
   render() {
-    return (
+    return !this.props.isAuth ? (
       <form onSubmit={this.handlesSubmit}>
+        {this.props.error && <h2>{this.props.error}</h2>}
         <p>
           <label>
             Name: <input type="text" name="name" onChange={this.handleChange} />
@@ -45,8 +46,24 @@ export class index extends Component {
           <button type="submit">Login</button>
         </p>
       </form>
+    ) : (
+      <Redirect to="/profile" />
     );
   }
 }
 
-export default index;
+const mapStateToProps = state => ({
+  error: state.auth.error,
+  isAuth: !!state.auth.token
+});
+
+const mapDispatchToProps = dispatch => ({
+  auth: (name, password) => dispatch(authAction(name, password))
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(LoginForm)
+);
