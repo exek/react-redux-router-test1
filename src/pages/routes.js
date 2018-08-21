@@ -20,6 +20,13 @@ const routes = [
     showInNav: true
   },
   {
+    title: "Profile",
+    path: "/profile",
+    component: Profile,
+    isPublic: false,
+    showInNav: true
+  },
+  {
     title: "Login",
     path: "/login",
     component: Login,
@@ -32,13 +39,6 @@ const routes = [
     component: Logout,
     isPublic: true,
     showInNav: isAuth => isAuth
-  },
-  {
-    title: "Profile",
-    path: "/profile",
-    component: Profile,
-    isPublic: false,
-    showInNav: true
   }
 ];
 
