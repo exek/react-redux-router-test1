@@ -1,25 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = ({ routes }) => {
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/news">News</Link>
-      </li>
-      <li>
-        <Link to="/profile">Profile</Link>
-      </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-    </ul>
+    <nav>
+      <ul>
+        {routes.map(({ title, path }) => (
+          <li key={path}>
+            <Link to={path}>{title}</Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
-Navigation.propTypes = {};
+Navigation.propTypes = {
+  routes: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
 
 export default Navigation;

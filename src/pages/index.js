@@ -1,22 +1,31 @@
 import React, { Fragment } from "react";
-import { Route } from "react-router-dom";
-
-import LoginPage from "./Login";
-import NewsPage from "./News";
-import ProfilePage from "./Profile";
-import HomePage from "./Home";
+import { Route, Switch } from "react-router-dom";
 
 import Navigation from "../components/Navigation";
 import PrivateRoute from "../components/PrivateRoute";
 
+import NotFound from "./NotFound";
+
+import routesConfig from "./routes";
+
 const Index = () => {
   return (
     <Fragment>
-      <Navigation />
-      <Route path="/news" component={HomePage} />
-      <Route path="/news" component={NewsPage} />
-      <PrivateRoute path="/profile" component={ProfilePage} />
-      <Route path="/login" component={LoginPage} />
+      <Navigation routes={routesConfig} />
+      <Switch>
+        {routesConfig.map(({ isPublic, path, component }) => {
+          const RouteComponent = isPublic ? Route : PrivateRoute;
+          return (
+            <RouteComponent
+              key={path}
+              path={path}
+              component={component}
+              exact
+            />
+          );
+        })}
+        <Route component={NotFound} />
+      </Switch>
     </Fragment>
   );
 };
