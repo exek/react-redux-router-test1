@@ -1,9 +1,19 @@
-#React test app with Redux and Router
+# About app
 
-## How to install
+The test app https://vk.com/@maxpfrontend-testovoe-zadanie-1
 
-code(npm install)
+# Install
 
-## How to run
+To install dependencies
 
-code(npm start)
+```shell
+npm install
+```
+
+# Run
+
+To run app
+
+```shell
+npm start
+```
