@@ -24,9 +24,15 @@ class LoginForm extends Component {
 
   handlesSubmit = event => {
     event.preventDefault();
-    if (this.props.auth(this.state.name, this.state.password)) {
-      this.props.history.push("/profile");
-    }
+    this.props.auth(this.state.name, this.state.password, this.redirect);
+  };
+
+  redirect = () => {
+    const redirectTo =
+      this.props.location.state && this.props.location.state.from
+        ? this.props.location.state.from
+        : "/";
+    this.props.history.push(redirectTo);
   };
 
   render() {
@@ -61,7 +67,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  auth: (name, password) => dispatch(authAction(name, password))
+  auth: (name, password, cb) => dispatch(authAction(name, password, cb))
 });
 
 export default withRouter(
