@@ -1,17 +1,21 @@
 import React, { Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Navigation from "../components/Navigation";
 import PrivateRoute from "../components/PrivateRoute";
-
 import NotFound from "./NotFound";
 
 import routesConfig from "./routes";
 
-const Index = () => {
+const Index = ({ isAuth }) => {
+  const navRoutes = routesConfig.filter(({ showInNav }) => {
+    return typeof showInNav === "function" ? showInNav(isAuth) : showInNav;
+  });
+
   return (
     <Fragment>
-      <Navigation routes={routesConfig} />
+      <Navigation routes={navRoutes} />
       <Switch>
         {routesConfig.map(({ isPublic, path, component }) => {
           const RouteComponent = isPublic ? Route : PrivateRoute;
@@ -32,4 +36,8 @@ const Index = () => {
 
 Index.propTypes = {};
 
-export default Index;
+const mapStateToProps = state => ({
+  isAuth: !!state.auth.token
+});
+
+export default withRouter(connect(mapStateToProps)(Index));

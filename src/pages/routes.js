@@ -8,25 +8,29 @@ const routes = [
     title: "Home",
     path: "/",
     component: Home,
-    isPublic: true
+    isPublic: true,
+    showInNav: true
   },
   {
     title: "News",
     path: "/news",
     component: News,
-    isPublic: true
+    isPublic: true,
+    showInNav: true
   },
   {
     title: "Login",
     path: "/login",
     component: Login,
-    isPublic: true
+    isPublic: true,
+    showInNav: isAuth => isAuth === false
   },
   {
     title: "Profile",
     path: "/profile",
     component: Profile,
-    isPublic: false
+    isPublic: false,
+    showInNav: true
   }
 ];
 
