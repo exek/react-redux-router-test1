@@ -2,17 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-const Login = props => {
+import NewsItem from "./NewsItem";
+
+const News = props => {
   return (
     <div>
-      {props.news.map(({ id, title, description }) => (
-        <h2 key={id}>{title}</h2>
+      <h1>News</h1>
+      {props.news.map(newsProps => (
+        <NewsItem key={newsProps.id} {...newsProps} />
       ))}
     </div>
   );
 };
 
-Login.propTypes = {
+News.propTypes = {
   // connect
   news: PropTypes.arrayOf(
     PropTypes.shape({
@@ -27,4 +30,4 @@ const mapStateToProps = state => ({
   news: state.news
 });
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(News);
