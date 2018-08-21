@@ -25,6 +25,6 @@ export const auth = (name, password, cb) => dispatch => {
     dispatch(authSusccess(name));
     if (cb) cb();
   } else {
-    dispatch(authFail("Wrong name or password"));
+    dispatch(authFail("Invalid name or password."));
   }
 };
