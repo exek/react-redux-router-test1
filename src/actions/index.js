@@ -4,9 +4,9 @@ export const authStart = () => ({
   type: actionTypes.AUTH_START
 });
 
-export const authSusccess = token => ({
+export const authSusccess = user => ({
   type: actionTypes.AUTH_SUCCESS,
-  token
+  user
 });
 
 export const authFail = err => ({
