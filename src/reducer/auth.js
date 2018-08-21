@@ -13,6 +13,8 @@ export default (state = init, action) => {
       return { ...state, token: action.token };
     case actionTypes.AUTH_FAIL:
       return { ...state, error: action.err };
+    case actionTypes.AUTH_LOGOUT:
+      return { token: null, error: "" };
     default:
       return state;
   }

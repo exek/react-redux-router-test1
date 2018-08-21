@@ -14,6 +14,10 @@ export const authFail = err => ({
   err
 });
 
+export const authLogout = () => ({
+  type: actionTypes.AUTH_LOGOUT
+});
+
 export const auth = (name, password) => dispatch => {
   dispatch(authStart());
   console.log(name, password);

@@ -1,5 +1,6 @@
 import Home from "./Home";
 import Login from "./Login";
+import Logout from "./logout";
 import News from "./News";
 import Profile from "./Profile";
 
@@ -23,7 +24,14 @@ const routes = [
     path: "/login",
     component: Login,
     isPublic: true,
-    showInNav: isAuth => isAuth === false
+    showInNav: isAuth => !isAuth
+  },
+  {
+    title: "Logout",
+    path: "/logout",
+    component: Logout,
+    isPublic: true,
+    showInNav: isAuth => isAuth
   },
   {
     title: "Profile",
