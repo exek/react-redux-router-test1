@@ -1,6 +1,7 @@
 # About app
 
 The test app https://vk.com/@maxpfrontend-testovoe-zadanie-1
+[DEMO](https://react-redux-router-test1.herokuapp.com/)
 
 # Install
 
