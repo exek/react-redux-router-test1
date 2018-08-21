@@ -16,20 +16,22 @@ const Index = ({ isAuth }) => {
   return (
     <Fragment>
       <Navigation routes={navRoutes} />
-      <Switch>
-        {routesConfig.map(({ isPublic, path, component }) => {
-          const RouteComponent = isPublic ? Route : PrivateRoute;
-          return (
-            <RouteComponent
-              key={path}
-              path={path}
-              component={component}
-              exact
-            />
-          );
-        })}
-        <Route component={NotFound} />
-      </Switch>
+      <div className="container" style={{ marginTop: 20 }}>
+        <Switch>
+          {routesConfig.map(({ isPublic, path, component }) => {
+            const RouteComponent = isPublic ? Route : PrivateRoute;
+            return (
+              <RouteComponent
+                key={path}
+                path={path}
+                component={component}
+                exact
+              />
+            );
+          })}
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     </Fragment>
   );
 };
