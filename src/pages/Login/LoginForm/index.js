@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { auth as authAction } from "../../../actions/";
 
 class LoginForm extends Component {
-  static propTypes = {};
+  static propTypes = {
+    //connect
+    error: PropTypes.string,
+    auth: PropTypes.func.isRequired
+  };
 
   state = {
     name: "",
@@ -52,8 +57,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: state.auth.error,
-  isAuth: !!state.auth.token
+  error: state.auth.error
 });
 
 const mapDispatchToProps = dispatch => ({
