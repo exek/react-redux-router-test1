@@ -6,7 +6,7 @@ const Login = () => {
     <div>
       <h1>Login</h1>
       <div className="alert alert-info" role="alert">
-        A sample user: Admin, password: 123456
+        email = 'max@test.com', password = '12345'
       </div>
       <LoginForm />
     </div>

@@ -2,19 +2,20 @@ import * as actionTypes from "../actions/actionTypes";
 
 const init = {
   user: null,
-  error: ""
+  error: "",
+  loading: false
 };
 
 export default (state = init, action) => {
   switch (action.type) {
     case actionTypes.AUTH_START:
-      return { user: null, error: "" };
+      return { ...state, user: null, error: "", loading: true };
     case actionTypes.AUTH_SUCCESS:
-      return { ...state, user: action.user };
+      return { ...state, user: action.user, error: "", loading: false };
     case actionTypes.AUTH_FAIL:
-      return { ...state, error: action.err };
+      return { ...state, error: action.err, loading: false };
     case actionTypes.AUTH_LOGOUT:
-      return { user: null, error: "" };
+      return init;
     default:
       return state;
   }

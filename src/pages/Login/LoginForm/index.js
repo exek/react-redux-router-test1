@@ -12,7 +12,7 @@ class LoginForm extends Component {
   };
 
   state = {
-    name: "",
+    email: "",
     password: ""
   };
 
@@ -24,7 +24,9 @@ class LoginForm extends Component {
 
   handlesSubmit = event => {
     event.preventDefault();
-    this.props.auth(this.state.name, this.state.password, this.redirect);
+    this.props
+      .auth(this.state.email, this.state.password)
+      .then(success => success && this.redirect);
   };
 
   redirect = () => {
@@ -44,11 +46,11 @@ class LoginForm extends Component {
           </div>
         )}
         <div className="form-group">
-          <label>Name: </label>
+          <label>Email: </label>
           <input
-            type="text"
+            type="email"
             className="form-control"
-            name="name"
+            name="email"
             onChange={this.handleChange}
           />
         </div>
@@ -76,7 +78,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  auth: (name, password, cb) => dispatch(authAction(name, password, cb))
+  auth: (name, password) => dispatch(authAction(name, password))
 });
 
 export default withRouter(
