@@ -7,8 +7,9 @@ import { auth as authAction } from "../../../actions/";
 class LoginForm extends Component {
   static propTypes = {
     //connect
+    auth: PropTypes.func.isRequired,
     error: PropTypes.string,
-    auth: PropTypes.func.isRequired
+    loading: PropTypes.bool
   };
 
   state = {
@@ -24,9 +25,9 @@ class LoginForm extends Component {
 
   handlesSubmit = event => {
     event.preventDefault();
-    this.props
-      .auth(this.state.email, this.state.password)
-      .then(success => success && this.redirect);
+    this.props.auth(this.state.email, this.state.password).then(success => {
+      if (success) this.redirect();
+    });
   };
 
   redirect = () => {
@@ -64,7 +65,12 @@ class LoginForm extends Component {
           />
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={this.props.loading}
+          >
+            {this.props.loading && <i className="fa fa-spinner fa-spin " />}
             Login
           </button>
         </div>
@@ -74,7 +80,8 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: state.auth.error
+  error: state.auth.error,
+  loading: state.auth.loading
 });
 
 const mapDispatchToProps = dispatch => ({
