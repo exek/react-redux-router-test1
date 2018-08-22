@@ -10,9 +10,9 @@ export const fetchUserSuccess = user => ({
   user
 });
 
-export const fetchUserFail = err => ({
+export const fetchUserFail = error => ({
   type: actionTypes.USER_FETCH_FAIL,
-  err
+  error
 });
 
 export const fetchUser = id => dispatch => {
@@ -23,7 +23,7 @@ export const fetchUser = id => dispatch => {
       dispatch(fetchUserSuccess(user));
       return true;
     })
-    .catch(err => {
-      dispatch(fetchUserFail(err.message));
+    .catch(error => {
+      dispatch(fetchUserFail(error.message));
     });
 };
