@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const Login = props => {
+const Profile = props => {
   return (
     <div>
       <h1>Profile Page</h1>
@@ -10,10 +10,11 @@ const Login = props => {
   );
 };
 
-Login.propTypes = {};
+Profile.propTypes = {};
 
 const mapStateToProps = state => ({
-  user: state.auth.user
+  //TODO use selector
+  user: "state.auth.user"
 });
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(Profile);

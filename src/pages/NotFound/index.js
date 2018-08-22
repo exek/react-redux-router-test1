@@ -1,6 +1,6 @@
 import React from "react";
 
-const Index = () => {
+const NotFound = () => {
   return (
     <div>
       <h1>Page Not Found</h1>
@@ -8,6 +8,6 @@ const Index = () => {
   );
 };
 
-Index.propTypes = {};
+NotFound.propTypes = {};
 
-export default Index;
+export default NotFound;
