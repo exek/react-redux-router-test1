@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const SocialLink = ({ link, label }) => {
-  return <a href={link}>{label}</a>;
+  return <a href="">{label}</a>;
 };
 
 SocialLink.propTypes = {

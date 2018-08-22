@@ -3,38 +3,6 @@ import PropTypes from "prop-types";
 
 import SocialLink from "./SocialLink";
 
-const user = {
-  userId: 1,
-  city: "Москва",
-  languages: ["English", "Русский"],
-  social: [
-    {
-      label: "vk",
-      link: "vk.com/maxpfrontend"
-    },
-    {
-      label: "telegram",
-      link: "t.me/maxpfrontend"
-    },
-    {
-      label: "web",
-      link: "https://maxpfrontend.ru"
-    },
-    {
-      label: "youtube",
-      link: "https://www.youtube.com/channel/UCqJyAVWwIqPWKEkfCSP1y4Q"
-    },
-    {
-      label: "twitter",
-      link: "https://twitter.com/MaxPatsiansky"
-    },
-    {
-      label: "twitch",
-      link: "http://twich.tv/maxpfrontend"
-    }
-  ]
-};
-
 const UserInfo = ({ user: { userId, city, languages, social } }) => {
   return (
     <div className="card">
