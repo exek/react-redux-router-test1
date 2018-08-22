@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import UserInfo from "./UserInfo";
 import Spinner from "../../components/Spinner";
+import ErrorMessage from "../../components/ErrorMessage";
 
 import { fetchUser } from "../../actions";
 
@@ -20,18 +21,13 @@ class Profile extends Component {
   }
 
   render() {
+    const { user, loading, error } = this.props;
     return (
       <div>
         <h1>Profile Page</h1>
-        {this.props.loading && <Spinner />}
-        {this.props.error && (
-          <div className="alert alert-danger" role="alert">
-            {this.props.error}
-          </div>
-        )}
-        {!this.props.loading &&
-          !this.props.error &&
-          this.props.user && <UserInfo user={this.props.user} />}
+        {loading && <Spinner />}
+        {error && <ErrorMessage error={error} />}
+        {!loading && !error && user && <UserInfo user={user} />}
       </div>
     );
   }

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { auth as authAction } from "../../../actions/";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 class LoginForm extends Component {
   static propTypes = {
@@ -46,13 +47,11 @@ class LoginForm extends Component {
   };
 
   render() {
+    const { error, loading } = this.props;
+    const { email, password } = this.state;
     return (
-      <form onSubmit={this.handlesSubmit}>
-        {this.props.error && (
-          <div className="alert alert-danger" role="alert">
-            {this.props.error}
-          </div>
-        )}
+      <form onSubmit={this.handlesSubmit} noValidate>
+        {error && <ErrorMessage error={error} />}
         <div className="form-group">
           <label>Email: </label>
           <input
@@ -60,7 +59,7 @@ class LoginForm extends Component {
             className="form-control"
             name="email"
             onChange={this.handleChange}
-            value={this.state.email}
+            value={email}
           />
         </div>
         <div className="form-group">
@@ -70,16 +69,12 @@ class LoginForm extends Component {
             type="password"
             name="password"
             onChange={this.handleChange}
-            value={this.state.password}
+            value={password}
           />
         </div>
         <div className="form-group">
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={this.props.loading}
-          >
-            {this.props.loading && <i className="fa fa-spinner fa-spin " />}
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading && <i className="fa fa-spinner fa-spin " />}
             Login
           </button>
         </div>

@@ -5,6 +5,7 @@ import { fetchNews } from "../../actions";
 
 import Spinner from "../../components/Spinner";
 import NewsList from "./NewsList";
+import ErrorMessage from "../../components/ErrorMessage";
 
 class News extends Component {
   static propTypes = {};
@@ -19,11 +20,7 @@ class News extends Component {
       <div>
         <h1>Profile Page</h1>
         {loading && <Spinner />}
-        {error && (
-          <div className="alert alert-danger" role="alert">
-            {error}
-          </div>
-        )}
+        {error && <ErrorMessage error={error} />}
         {!loading && !error && news && <NewsList news={news} />}
         {news && <p>Total news: {news.length}</p>}
       </div>
