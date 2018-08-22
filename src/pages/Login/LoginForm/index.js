@@ -26,16 +26,23 @@ class LoginForm extends Component {
   handlesSubmit = event => {
     event.preventDefault();
     this.props.auth(this.state.email, this.state.password).then(success => {
-      if (success) this.redirect();
+      if (success) this.onSuccessLogin();
+      else this.onFailLogin();
     });
   };
 
-  redirect = () => {
+  onSuccessLogin = () => {
     const redirectTo =
       this.props.location.state && this.props.location.state.from
         ? this.props.location.state.from
         : "/";
     this.props.history.push(redirectTo);
+  };
+
+  onFailLogin = () => {
+    this.setState({
+      password: ""
+    });
   };
 
   render() {
@@ -53,6 +60,7 @@ class LoginForm extends Component {
             className="form-control"
             name="email"
             onChange={this.handleChange}
+            value={this.state.email}
           />
         </div>
         <div className="form-group">
@@ -62,6 +70,7 @@ class LoginForm extends Component {
             type="password"
             name="password"
             onChange={this.handleChange}
+            value={this.state.password}
           />
         </div>
         <div className="form-group">
