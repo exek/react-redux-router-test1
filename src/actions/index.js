@@ -23,19 +23,8 @@ export const auth = (email, password) => dispatch => {
   dispatch(authStart());
   return api
     .auth(email, password)
-    .then(response => {
-      /*
-      response.data: {
-        "status": "ok",
-        "data": {
-          "id": 1
-        }
-      }
-      */
-      const { status, data, message } = response.data;
-      if (status !== "ok") throw new Error(message);
-
-      dispatch(authSusccess(data));
+    .then(user => {
+      dispatch(authSusccess(user));
       return true;
     })
     .catch(err => {
