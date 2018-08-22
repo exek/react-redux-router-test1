@@ -1,11 +1,20 @@
-import newsArr from "../assets/news";
-import uuid from "uuid/v1";
+import * as actionTypes from "../actions/actionTypes";
 
-const init = newsArr.slice(0, 10).map(item => {
-  item["id"] = uuid();
-  return item;
-});
+const init = {
+  loading: false,
+  error: null,
+  data: []
+};
 
 export default (state = init, action) => {
-  return state;
+  switch (action.type) {
+    case actionTypes.NEWS_FETCH_REQUEST:
+      return { ...init, loading: true };
+    case actionTypes.NEWS_FETCH_SUCCESS:
+      return { ...init, data: action.news };
+    case actionTypes.NEWS_FETCH_FAIL:
+      return { ...init, error: action.error };
+    default:
+      return state;
+  }
 };
