@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div>
       <h1>Login</h1>
-      <div class="alert alert-info" role="alert">
+      <div className="alert alert-info" role="alert">
         A sample user: Admin, password: 123456
       </div>
       <LoginForm />

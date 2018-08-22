@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
 const Navigation = ({ routes }) => (
-  <nav class="navbar navbar-dark bg-primary navbar-expand">
+  <nav className="navbar navbar-dark bg-primary navbar-expand">
     <div className="container">
-      <ul class="navbar-nav">
+      <ul className="navbar-nav">
         {routes.map(({ title, path }) => (
-          <li class="nav-item">
+          <li className="nav-item" key={path}>
             <NavLink
               className="nav-link"
               to={path}

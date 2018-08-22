@@ -39,30 +39,30 @@ class LoginForm extends Component {
     return (
       <form onSubmit={this.handlesSubmit}>
         {this.props.error && (
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-danger" role="alert">
             {this.props.error}
           </div>
         )}
-        <div class="form-group">
+        <div className="form-group">
           <label>Name: </label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             name="name"
             onChange={this.handleChange}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label>Password: </label>
           <input
-            class="form-control"
+            className="form-control"
             type="password"
             name="password"
             onChange={this.handleChange}
           />
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary">
             Login
           </button>
         </div>
