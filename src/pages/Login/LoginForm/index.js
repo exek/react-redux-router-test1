@@ -13,7 +13,8 @@ class LoginForm extends Component {
     //connect
     auth: PropTypes.func.isRequired,
     error: PropTypes.string,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    clearErrors: PropTypes.func
   };
 
   state = {
