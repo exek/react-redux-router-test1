@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { auth as authAction } from "../../../actions/";
+import { auth, clearErrors } from "../../../actions/";
 import ErrorMessage from "../../../components/ErrorMessage";
 
 class LoginForm extends Component {
@@ -17,6 +17,10 @@ class LoginForm extends Component {
     email: "",
     password: ""
   };
+
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({
@@ -88,9 +92,10 @@ const mapStateToProps = state => ({
   loading: state.auth.loading
 });
 
-const mapDispatchToProps = dispatch => ({
-  auth: (name, password) => dispatch(authAction(name, password))
-});
+const mapDispatchToProps = {
+  auth,
+  clearErrors
+};
 
 export default withRouter(
   connect(
