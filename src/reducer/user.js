@@ -14,6 +14,8 @@ export default (state = init, action) => {
       return { ...init, user: action.user };
     case actionTypes.USER_FETCH_FAIL:
       return { ...init, error: action.error };
+    case actionTypes.CLEAR_ERRORS:
+      return { ...state, error: "" };
     default:
       return state;
   }

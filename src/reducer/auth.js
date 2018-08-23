@@ -16,6 +16,8 @@ export default (state = init, action) => {
       return { ...state, error: action.err, loading: false };
     case actionTypes.AUTH_LOGOUT:
       return init;
+    case actionTypes.CLEAR_ERRORS:
+      return { ...state, error: "" };
     default:
       return state;
   }
