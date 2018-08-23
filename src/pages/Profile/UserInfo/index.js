@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 import SocialLink from "./SocialLink";
 
 const UserInfo = ({ user: { userId, city, languages, social } }) => {
+  const sorted = Array.from(social).sort((a, b) => {
+    if (a["label"] === "web") return -1;
+    return 1;
+  });
+
   return (
     <div className="card">
       <div className="card-body">
@@ -11,9 +16,9 @@ const UserInfo = ({ user: { userId, city, languages, social } }) => {
         <p className="card-text">City: {city}</p>
         <p className="card-text">Languages: {languages.join(", ")}</p>
         <ul>
-          {social.map(item => (
-            <li>
-              <SocialLink key={item.label} {...item} />
+          {sorted.map(item => (
+            <li key={item.label}>
+              <SocialLink {...item} />
             </li>
           ))}
         </ul>
