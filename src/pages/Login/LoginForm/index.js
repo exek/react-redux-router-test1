@@ -60,6 +60,13 @@ class LoginForm extends Component {
   handlesSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state.fields;
+    const { loading } = this.props;
+    const isFormValid = !Object.keys(this.getErrors()).length;
+
+    if (!isFormValid || loading) {
+      return;
+    }
+
     this.props.auth(email.value, password.value).then(success => {
       if (success) this.onSuccessLogin();
       else this.onFailLogin();
