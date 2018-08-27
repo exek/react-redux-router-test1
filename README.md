@@ -1,6 +1,6 @@
 # About app
 
-Sample app to test knowledge of react, redux, react-router, async api. [Demo here](https://react-redux-router-test1.herokuapp.com/)
+Sample app to test knowledge of react, redux, react-router, async api. [Demo here(can take ~20 seconds to init the server)](https://react-redux-router-test1.herokuapp.com/)
 
 ## Description(in Russian)
 
